@@ -1,0 +1,5 @@
+### 获取验证码图片
+POST localhost:63075/checkcode/pic
+
+### 校验验证码
+POST localhost:63075/checkcode/verify?key=checkcode:13735eecf67c43e1aed88fd634464b57&code=m40q
