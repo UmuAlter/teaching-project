@@ -43,11 +43,14 @@ public class CourseBaseInfoServiceImpl implements CourseBaseInfoService {
         LambdaQueryWrapper<CourseBase> queryWrapper = new LambdaQueryWrapper<>();
         queryWrapper.eq(CourseBase::getCompanyId, companyId);
         // 构建查询条件：按照课程名称模糊查询
-        queryWrapper.like(StringUtils.isNotEmpty(queryCourseParams.getCourseName()), CourseBase::getName, queryCourseParams.getCourseName());
+        queryWrapper.like(StringUtils.isNotEmpty(queryCourseParams.getCourseName()),
+                CourseBase::getName, queryCourseParams.getCourseName());
         // 构建查询条件，按照课程审核状态查询
-        queryWrapper.eq(StringUtils.isNotEmpty(queryCourseParams.getAuditStatus()), CourseBase::getAuditStatus, queryCourseParams.getAuditStatus());
+        queryWrapper.eq(StringUtils.isNotEmpty(queryCourseParams.getAuditStatus()),
+                CourseBase::getAuditStatus, queryCourseParams.getAuditStatus());
         // 构建查询条件，按照课程发布状态查询
-        queryWrapper.eq(StringUtils.isNotEmpty(queryCourseParams.getPublishStatus()), CourseBase::getStatus, queryCourseParams.getPublishStatus());
+        queryWrapper.eq(StringUtils.isNotEmpty(queryCourseParams.getPublishStatus()),
+                CourseBase::getStatus, queryCourseParams.getPublishStatus());
         // 分页对象
         Page<CourseBase> page = new Page<>(pageParams.getPageNo(), pageParams.getPageSize());
         // 查询数据内容获得结果
@@ -61,6 +64,7 @@ public class CourseBaseInfoServiceImpl implements CourseBaseInfoService {
     }
 
     @Override
+    @Transactional
     public CourseBaseInfoDto createCourseBase(Long companyId, AddCourseDto addCourseDto) {
         // 1. 合法性校验，由JSR-303校验
         // 2. 封装请求参数

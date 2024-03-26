@@ -38,6 +38,12 @@ public class LocalDateTimeConfig {
     }
 
     //long转string避免精度损失
+
+    /**
+     * 自定义序列化器
+     * @param builder
+     * @return
+     */
     @Bean
     public ObjectMapper jacksonObjectMapper(Jackson2ObjectMapperBuilder builder) {
         ObjectMapper objectMapper = builder.createXmlMapper(false).build();

@@ -27,13 +27,15 @@ public class CourseBaseInfoController {
 
     @ApiOperation("课程查询接口")
     @PostMapping("/course/list")
-    public PageResult<CourseBase> list(PageParams pageParams, @RequestBody QueryCourseParamDto queryCourseParams) {
+    public PageResult<CourseBase> list(PageParams pageParams,
+                                       @RequestBody QueryCourseParamDto queryCourseParams) {
         SecurityUtil.XcUser user = SecurityUtil.getUser();
         Long companyId = null;
         if (StringUtils.isNotEmpty(user.getCompanyId())) {
             companyId = Long.parseLong(user.getCompanyId());
         }
-        PageResult<CourseBase> result = courseBaseInfoService.queryCourseBaseList(companyId, pageParams, queryCourseParams);
+        PageResult<CourseBase> result = courseBaseInfoService
+                .queryCourseBaseList(companyId, pageParams, queryCourseParams);
         return result;
     }
 
